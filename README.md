@@ -11,5 +11,5 @@ To run locally:
 1. Run `bun i`
 
 You can now run these npm scripts
-- `bun run --bun dev` - Start the demo with Greenwood local dev server
-- `bun run --bun serve` - Start the demo with a production Greenwood build
+- `bun run --bun dev` - Start the project with Greenwood's local dev server
+- `bun run --bun serve` - Start the project with a production Greenwood build
