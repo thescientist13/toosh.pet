@@ -15,6 +15,9 @@
   },
   "devDependencies": {
     "@greenwood/cli": "~0.33.3",
+    "@greenwood/plugin-postcss": "~0.33.3",
+    "autoprefixer": "^10.4.14",
+    "tailwindcss": "^3.3.2",
     "typescript": "^5.8.0"
   },
   "patchedDependencies": {
