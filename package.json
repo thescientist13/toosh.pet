@@ -16,5 +16,8 @@
   "devDependencies": {
     "@greenwood/cli": "~0.33.3",
     "typescript": "^5.8.0"
+  },
+  "patchedDependencies": {
+    "@greenwood/cli@0.33.3": "patches/@greenwood%2Fcli@0.33.3.patch"
   }
 }

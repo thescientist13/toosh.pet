@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
-import type { ResourceType } from 'cloudinary';
+import type { ResourceApiResponse } from 'cloudinary';
 
 const MAX_RESULTS = 500; // doubt we'll ever hit this limit...
 const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = process.env;
@@ -12,9 +12,22 @@ cloudinary.config({
 
 type SUPPORTED_FOLDERS = 'Tosh';
 
+// since Cloudinary doesn't have the great support for TypeScript
+// https://github.com/cloudinary/cloudinary_npm/issues/175
+export type CustomCloudinaryAsset = {
+  alt?: string;
+  format: string;
+  height: number;
+  width: number;
+  assetId: string;
+  publicId: string;
+  secureUrl: string;
+  resourceType: string;
+}
+
 // https://cloudinary.com/documentation/admin_api#get_resources_by_asset_folder
 async function getAssetsByFolder(folderName: SUPPORTED_FOLDERS) {
-  let assets: ResourceType[] = [];
+  let assets: CustomCloudinaryAsset[] = [];
 
   if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_API_KEY || !CLOUDINARY_API_SECRET) {
     console.warn('**Expected Cloudinary credentials not detected.**');

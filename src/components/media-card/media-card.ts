@@ -1,3 +1,5 @@
+import type { CustomCloudinaryAsset } from '../../clients/cloudinary.ts';
+
 export default class MediaCard extends HTMLElement {
   #CLOUDINARY_BASE_URL;
 
@@ -9,7 +11,7 @@ export default class MediaCard extends HTMLElement {
   }
 
   async connectedCallback() {
-    const asset = JSON.parse(this.getAttribute('asset'));
+    const asset: CustomCloudinaryAsset = JSON.parse(this.getAttribute('asset'));
     const { alt = '', format, height, width, publicId, resourceType } = asset;
     const cloudinaryAssetUrl = `${this.#CLOUDINARY_BASE_URL}${resourceType}/upload/c_scale,h_400/`;
     let tag = '';

@@ -1,4 +1,5 @@
 import '../media-card/media-card.ts';
+import type { CustomCloudinaryAsset } from '../../clients/cloudinary.ts';
 
 // masonry layout curtesy of
 // https://flowbite.com/docs/components/gallery/
@@ -7,8 +8,8 @@ export default class MediaGrid extends HTMLElement {
     const STACK_HEIGHT = 3;
     const STACK_WIDTH = 3;
     // TODO: assumes at least 9 items are passed in, or should otherwise better handle "empty" spaces in the grid
-    const assets = JSON.parse(this.getAttribute('assets') || '[]');
-    const stacks = [];
+    const assets: CustomCloudinaryAsset[] = JSON.parse(this.getAttribute('assets') || '[]');
+    const stacks: Array<CustomCloudinaryAsset>[][] = [];
     // 0
     // 0 1 2
     // 3 4 5

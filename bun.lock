@@ -12,6 +12,9 @@
       },
     },
   },
+  "patchedDependencies": {
+    "@greenwood/cli@0.33.3": "patches/@greenwood%2Fcli@0.33.3.patch",
+  },
   "packages": {
     "@greenwood/cli": ["@greenwood/cli@0.33.3", "", { "dependencies": { "@rollup/plugin-commonjs": "^28.0.0", "@rollup/plugin-node-resolve": "^15.0.0", "@rollup/plugin-terser": "^0.4.4", "acorn": "^8.14.0", "acorn-walk": "^8.3.4", "amaro": "^1.1.1", "css-tree": "^3.0.0", "es-module-shims": "^1.8.3", "front-matter": "^4.0.2", "koa": "^3.0.1", "koa-body": "^6.0.1", "livereload": "^0.9.1", "node-html-parser": "^7.0.1", "rollup": "^4.26.0", "wc-compiler": "~0.17.1" }, "bin": { "greenwood": "src/bin.js" } }, "sha512-pkUod5f6eFoG6yC7fvtr8m2f2PhOxefxUAFUnRjEQpaeDdRAnbdEzNsWVkzsvkocZrsd41RYAxzvZ1L7WfflXA=="],
 
