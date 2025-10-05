@@ -10,6 +10,9 @@
     "serve": "bun run --bun build && greenwood serve",
     "check": "tsc"
   },
+  "dependencies": {
+    "cloudinary": "^2.7.0"
+  },
   "devDependencies": {
     "@greenwood/cli": "~0.33.3",
     "typescript": "^5.8.0"
