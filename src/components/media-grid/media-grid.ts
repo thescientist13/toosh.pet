@@ -4,9 +4,11 @@ import type { CustomCloudinaryAsset } from '../../clients/cloudinary.ts';
 // masonry layout curtesy of
 // https://flowbite.com/docs/components/gallery/
 export default class MediaGrid extends HTMLElement {
+  // probably should sync these to gap + cols
+  #STACK_HEIGHT = 3;
+  #STACK_WIDTH = 3;
+
   async connectedCallback() {
-    const STACK_HEIGHT = 3;
-    const STACK_WIDTH = 3;
     // TODO: assumes at least 9 items are passed in, or should otherwise better handle "empty" spaces in the grid
     const assets: CustomCloudinaryAsset[] = JSON.parse(this.getAttribute('assets') || '[]');
     const stacks: Array<CustomCloudinaryAsset>[][] = [];
@@ -28,13 +30,13 @@ export default class MediaGrid extends HTMLElement {
     let stackIndex = -1;
 
     assets.forEach((asset, idx) => {
-      if (idx === 0 || (idx % (STACK_HEIGHT * STACK_WIDTH) === 0)) {
+      if (idx === 0 || (idx % (this.#STACK_HEIGHT * this.#STACK_WIDTH) === 0)) {
         stackIndex += 1;
         stacks[stackIndex] = [];
       }
 
-      const stackX = idx % STACK_WIDTH;
-      const stackY = Math.floor(idx / STACK_WIDTH) - (STACK_WIDTH * stackIndex);
+      const stackX = idx % this.#STACK_WIDTH;
+      const stackY = Math.floor(idx / this.#STACK_WIDTH) - (this.#STACK_WIDTH * stackIndex);
 
       if (!stacks[stackIndex][stackY]) {
         stacks[stackIndex][stackY] = [null, null, null];
@@ -46,7 +48,7 @@ export default class MediaGrid extends HTMLElement {
     let layout = '';
 
     stacks.forEach((stack) => {
-      const groups = Array(STACK_WIDTH).fill('<div class="grid gap-4">');
+      const groups = Array(this.#STACK_WIDTH).fill('<div class="grid gap-3">');
 
       stack.forEach((row) => {
         row.forEach((asset, x) => {
@@ -70,7 +72,7 @@ export default class MediaGrid extends HTMLElement {
     });
 
     this.innerHTML += `
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
         ${layout}
       </div>
     `;
