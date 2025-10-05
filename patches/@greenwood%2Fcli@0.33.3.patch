@@ -1,0 +1,20 @@
+diff --git a/src/plugins/resource/plugin-node-modules.js b/src/plugins/resource/plugin-node-modules.js
+index 9c983a2f3f4bb043ee9aa3f6e090509444156edd..36c4f4ea4ea1bfcdb699c7d3a3568c28d3c2b843 100644
+--- a/src/plugins/resource/plugin-node-modules.js
++++ b/src/plugins/resource/plugin-node-modules.js
+@@ -41,9 +41,13 @@ class NodeModulesResource {
+   }
+ 
+   async shouldServe(url) {
+-    const { href, protocol } = url;
++    const { href, protocol, pathname } = url;
+ 
+-    return protocol === "file:" && (await checkResourceExists(new URL(href)));
++    return (
++      protocol === "file:" &&
++      pathname.indexOf("/node_modules/") >= 0 &&
++      (await checkResourceExists(new URL(href)))
++    );
+   }
+ 
+   async serve(url) {
