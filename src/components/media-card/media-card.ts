@@ -6,7 +6,6 @@ export default class MediaCard extends HTMLElement {
   constructor() {
     super();
 
-    // would be nice to make this a private static member, e.g. #
     this.#CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/dbjwlulpm/';
   }
 

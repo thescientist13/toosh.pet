@@ -1,8 +1,8 @@
 export default class Footer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <footer class="text-center italic">
-        <span>Last update: ${new Date().toISOString()}</span>
+      <footer class="text-center italic mb-4">
+        <span>Last updated: ${new Date().toISOString()}</span>
       </footer>
     `
   }

@@ -3,10 +3,16 @@ import type { CustomCloudinaryAsset } from '../../clients/cloudinary.ts';
 
 // masonry layout curtesy of
 // https://flowbite.com/docs/components/gallery/
-export default class MediaGrid extends HTMLElement {
+export default class MediaCardGrid extends HTMLElement {
   // probably should sync these to gap + cols
   #STACK_HEIGHT = 3;
   #STACK_WIDTH = 3;
+  #DEFAULT_ROTATION = 'center';
+  #ROTATION_CLASS_MAPPER = {
+    center: 'rotate-0',
+    left: '-rotate-1',
+    right: 'rotate-1'
+  };
 
   async connectedCallback() {
     // TODO: assumes at least 9 items are passed in, or should otherwise better handle "empty" spaces in the grid
@@ -51,12 +57,14 @@ export default class MediaGrid extends HTMLElement {
       const groups = Array(this.#STACK_WIDTH).fill('<div class="grid gap-3">');
 
       stack.forEach((row) => {
-        row.forEach((asset, x) => {
+        row.forEach((asset, idx) => {
+          const rotation = idx % 2 === 0 ? 'left' : 'right';
+          const rotationClass = this.#ROTATION_CLASS_MAPPER[rotation]
 
-          groups[x] += `
+          groups[idx] += `
             <div>
               <ts-media-card 
-                class="h-auto max-w-full rounded-lg"
+                class="${rotationClass} inline-block h-auto max-w-full rounded-lg m-2 border-yellow-600 border-2"
                 asset='${JSON.stringify({ ...asset, alt: 'Toosh' }).replace(/'/g, '\\"')}'
               /></ts-media-card>
             </div>
@@ -79,4 +87,4 @@ export default class MediaGrid extends HTMLElement {
   }
 }
 
-customElements.define('ts-media-grid', MediaGrid);
+customElements.define('ts-media-card-grid', MediaCardGrid);

@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "toosh.pet",
+      "name": "www.toosh.pet",
       "dependencies": {
         "cloudinary": "^2.7.0",
       },
