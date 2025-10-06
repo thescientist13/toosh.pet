@@ -3,7 +3,7 @@ import type { CustomCloudinaryAsset } from '../../clients/cloudinary.ts';
 
 // masonry layout curtesy of
 // https://flowbite.com/docs/components/gallery/
-export default class MediaGrid extends HTMLElement {
+export default class MediaCardGrid extends HTMLElement {
   // probably should sync these to gap + cols
   #STACK_HEIGHT = 3;
   #STACK_WIDTH = 3;
@@ -56,7 +56,7 @@ export default class MediaGrid extends HTMLElement {
           groups[x] += `
             <div>
               <ts-media-card 
-                class="h-auto max-w-full rounded-lg"
+                class="inline-block h-auto max-w-full rounded-lg m-2 border-yellow-600 border-2"
                 asset='${JSON.stringify({ ...asset, alt: 'Toosh' }).replace(/'/g, '\\"')}'
               /></ts-media-card>
             </div>
@@ -79,4 +79,4 @@ export default class MediaGrid extends HTMLElement {
   }
 }
 
-customElements.define('ts-media-grid', MediaGrid);
+customElements.define('ts-media-card-grid', MediaCardGrid);
