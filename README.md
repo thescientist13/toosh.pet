@@ -1,4 +1,4 @@
-# toosh.pet
+# www.toosh.pet
 
 We 🧡 Tosh
 
