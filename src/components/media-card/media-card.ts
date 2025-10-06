@@ -20,6 +20,7 @@ export default class MediaCard extends HTMLElement {
       case 'image':
         tag = `
           <img
+            class="rounded-md"
             height="${height}"
             width="${width}"
             src="${cloudinaryAssetUrl}f_auto/${encodeURIComponent(publicId)}"
@@ -31,6 +32,7 @@ export default class MediaCard extends HTMLElement {
       case 'video':
         tag = `
           <video
+            class="rounded-md"
             controls
             loading="lazy"
           >
