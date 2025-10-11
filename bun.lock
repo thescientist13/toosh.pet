@@ -16,6 +16,7 @@
     },
   },
   "patchedDependencies": {
+    "wc-compiler@0.17.1": "patches/wc-compiler@0.17.1.patch",
     "@greenwood/cli@0.33.3": "patches/@greenwood%2Fcli@0.33.3.patch",
   },
   "packages": {

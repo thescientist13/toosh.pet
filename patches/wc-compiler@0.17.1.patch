@@ -1,0 +1,13 @@
+diff --git a/src/jsx-loader.js b/src/jsx-loader.js
+index fd319805b895d75ac3adc5cfb3ff81d22d211c87..595760c375390f41c2e4a2c1f8f51ce53d8056e7 100644
+--- a/src/jsx-loader.js
++++ b/src/jsx-loader.js
+@@ -253,7 +253,7 @@ export function parseJsx(moduleURL) {
+   walk.simple(tree, {
+     ClassDeclaration(node) {
+       // @ts-ignore
+-      if (node.superClass.name === 'HTMLElement') {
++      if (node.superClass?.name === 'HTMLElement') {
+         const hasShadowRoot = moduleContents.slice(node.body.start, node.body.end).indexOf('this.attachShadow(') > 0;
+ 
+         for (const n1 of node.body.body) {
