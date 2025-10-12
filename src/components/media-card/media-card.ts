@@ -19,25 +19,35 @@ export default class MediaCard extends HTMLElement {
 
       case 'image':
         tag = `
-          <img
-            class="rounded-md"
-            height="${height}"
-            width="${width}"
-            src="${cloudinaryAssetUrl}f_auto/${encodeURIComponent(publicId)}"
-            alt="${alt}"
-            loading="lazy"
-          />
+          <a
+            href="${cloudinaryAssetUrl}f_auto/${encodeURIComponent(publicId)}"
+            target="_blank"
+          >
+            <img
+              class="rounded-md"
+              height="${height}"
+              width="${width}"
+              src="${cloudinaryAssetUrl}f_auto/${encodeURIComponent(publicId)}"
+              alt="${alt}"
+              loading="lazy"
+            />
+          </a>
         `;
         break;
       case 'video':
         tag = `
-          <video
-            class="rounded-md"
-            controls
-            loading="lazy"
+          <a
+            href="${cloudinaryAssetUrl}f_mp4/${encodeURIComponent(publicId)}#t=0.1"
+            target="_blank"
           >
-            <source src="${cloudinaryAssetUrl}f_mp4/${encodeURIComponent(publicId)}#t=0.1" type="video/mp4" />
-          </video>
+            <video
+              class="rounded-md"
+              controls
+              loading="lazy"
+            >
+              <source src="${cloudinaryAssetUrl}f_mp4/${encodeURIComponent(publicId)}#t=0.1" type="video/mp4" />
+            </video>
+          </a>
         `;
         break;
       default:
