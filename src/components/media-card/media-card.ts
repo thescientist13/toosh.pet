@@ -12,32 +12,43 @@ export default class MediaCard extends HTMLElement {
   async connectedCallback() {
     const asset: CustomCloudinaryAsset = JSON.parse(this.getAttribute('asset'));
     const { alt = '', format, height, width, publicId, resourceType } = asset;
-    const cloudinaryAssetUrl = `${this.#CLOUDINARY_BASE_URL}${resourceType}/upload/c_scale,h_400/`;
+    const cloudinaryDirectUploadUrl = `${this.#CLOUDINARY_BASE_URL}${resourceType}/upload/`;
+    const cloudinaryAssetPreviewUrl = `${cloudinaryDirectUploadUrl}/c_scale,h_400/`;
     let tag = '';
 
     switch (resourceType) {
 
       case 'image':
         tag = `
-          <img
-            class="rounded-md"
-            height="${height}"
-            width="${width}"
-            src="${cloudinaryAssetUrl}f_auto/${encodeURIComponent(publicId)}"
-            alt="${alt}"
-            loading="lazy"
-          />
+          <a
+            href="${this.#CLOUDINARY_BASE_URL}${resourceType}/upload/f_auto/${encodeURIComponent(publicId)}"
+            target="_blank"
+          >
+            <img
+              class="rounded-md"
+              height="${height}"
+              width="${width}"
+              src="${cloudinaryAssetPreviewUrl}f_auto/${encodeURIComponent(publicId)}"
+              alt="${alt}"
+              loading="lazy"
+            />
+          </a>
         `;
         break;
       case 'video':
         tag = `
-          <video
-            class="rounded-md"
-            controls
-            loading="lazy"
+          <a
+            href="${cloudinaryDirectUploadUrl}f_mp4/${encodeURIComponent(publicId)}#t=0.1"
+            target="_blank"
           >
-            <source src="${cloudinaryAssetUrl}f_mp4/${encodeURIComponent(publicId)}#t=0.1" type="video/mp4" />
-          </video>
+            <video
+              class="rounded-md"
+              controls
+              loading="lazy"
+            >
+              <source src="${cloudinaryAssetPreviewUrl}f_mp4/${encodeURIComponent(publicId)}#t=0.1" type="video/mp4" />
+            </video>
+          </a>
         `;
         break;
       default:
